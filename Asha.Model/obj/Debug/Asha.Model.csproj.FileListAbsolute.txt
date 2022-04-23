@@ -1,0 +1,14 @@
+C:\pj\asha\Asha.Admin\Asha.Model\bin\Debug\Asha.Model.exe.config
+C:\pj\asha\Asha.Admin\Asha.Model\bin\Debug\Asha.Model.exe
+C:\pj\asha\Asha.Admin\Asha.Model\bin\Debug\Asha.Model.pdb
+C:\pj\asha\Asha.Admin\Asha.Model\bin\Debug\EntityFramework.dll
+C:\pj\asha\Asha.Admin\Asha.Model\bin\Debug\EntityFramework.SqlServer.dll
+C:\pj\asha\Asha.Admin\Asha.Model\bin\Debug\EntityFramework.xml
+C:\pj\asha\Asha.Admin\Asha.Model\bin\Debug\EntityFramework.SqlServer.xml
+C:\pj\asha\Asha.Admin\Asha.Model\bin\Debug\zh-Hant\EntityFramework.resources.dll
+C:\pj\asha\Asha.Admin\Asha.Model\bin\Debug\zh-Hant\EntityFramework.SqlServer.resources.dll
+C:\pj\asha\Asha.Admin\Asha.Model\obj\Debug\Asha.Model.csproj.AssemblyReference.cache
+C:\pj\asha\Asha.Admin\Asha.Model\obj\Debug\Asha.Model.csproj.CoreCompileInputs.cache
+C:\pj\asha\Asha.Admin\Asha.Model\obj\Debug\Asha.Model.csproj.CopyComplete
+C:\pj\asha\Asha.Admin\Asha.Model\obj\Debug\Asha.Model.exe
+C:\pj\asha\Asha.Admin\Asha.Model\obj\Debug\Asha.Model.pdb

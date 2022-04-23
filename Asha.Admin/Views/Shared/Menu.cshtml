@@ -1,0 +1,42 @@
+﻿
+<div class="sidebar">
+    <!--<div class="searchArea">
+      <input name="" type="text" />
+      <a href="#" class="bt"></a></div>-->
+    <ul class="item_list" name="menuList">
+        <li class="system1" id="sys1">
+            <a href="#">課程管理  </a>
+            <ul class="item_sublist">
+                <li id="category"><a href="@Url.Action("Index","Category")" name="subMenu">課程分類</a></li>
+            </ul>
+            <ul class="item_sublist">
+                <li id="product"><a href="@Url.Action("Index","Product")" name="subMenu">課程管理</a></li>
+            </ul>
+        </li>
+        </ul>
+        <ul class="item_list" name="menuList">
+            <li class="system2" id="sys2">
+                <a href="#">預約管理  </a>
+                <ul class="item_sublist">
+                    <li id="reserved"><a href="@Url.Action("Index","Reserved")" name="subMenu">預約列表</a></li>
+                </ul>
+            </li>
+        </ul>
+</div>
+<script>
+    $(document).ready(function () {
+        var list = document.getElementsByName('subMenu');
+        for (i = 0; i < list.length; i++) {
+            if (list[i].href == window.location.href) {
+                var pId = list[i].parentNode.id;
+                $(`#${pId}`).addClass('current');
+                var ppId = list[i].parentNode.parentNode.parentNode.id;
+                $(`#${ppId}`).addClass('current');
+            }
+        }
+        $('.item_list li').on('click', function () {
+            $('.item_list li').removeClass('current');
+            $(this).addClass('current');
+        })
+    })
+</script>

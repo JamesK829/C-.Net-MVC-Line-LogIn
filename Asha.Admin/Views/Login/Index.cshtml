@@ -1,0 +1,94 @@
+﻿@model AshaAdmin.LoginViewModel
+@{
+    Layout = "";
+}
+@{
+    Layout = "";
+}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>ASHA後台管理系統</title>
+    <link href="~/Content/css/global.css" rel="stylesheet" type="text/css" media="all" />
+    <script src="~/Scripts/jquery-3.6.0.min.js"></script>
+    <script src="~/Scripts/jquery.placeholder.js"></script>
+    <style>
+        .field-validation-error {
+            color: red;
+        }
+
+        .redClass {
+            color: red;
+        }
+    </style>
+    <script type="text/javascript">
+        var yearRange = '-10:+20';
+        var maxDate = '';
+        $(document).ready(function () {
+            $(function () {
+            @if (TempData["Message"] != null)
+            {
+            <text>
+                var message = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(TempData["Message"]));
+                alert(message);
+                window.location.reload();
+            </text>
+            TempData["Message"] = null;
+            }
+
+                $('#START_TIME').on('focus', function (e) {
+                    e.preventDefault();
+                    $(this).datepicker('show');
+                    $(this).datepicker('widget').css('z-index', 1051);
+                });
+                $('#END_TIME').on('focus', function (e) {
+                    e.preventDefault();
+                    $(this).datepicker('show');
+                    $(this).datepicker('widget').css('z-index', 1051);
+                });
+                $('#SearchParameter_StartTime').on('focus', function (e) {
+                    e.preventDefault();
+                    $(this).datepicker('show');
+                    $(this).datepicker('widget').css('z-index', 1051);
+                });
+                $('#SearchParameter_EndTime').on('focus', function (e) {
+                    e.preventDefault();
+                    $(this).datepicker('show');
+                    $(this).datepicker('widget').css('z-index', 1051);
+                });
+            });
+        });
+    </script>
+</head>
+<body class="loginSet">
+    <div class="wrapper">
+        <div class="loginArea">
+            <div class="logo"></div>
+            <P class="tCenter logoText" style="margin-top:-15%;">ASHA<span style="margin-top:5%;">後台管理系統</span></P>
+            <ul class="login_list">
+                @using (Html.BeginForm("Index", "Login", FormMethod.Post, new { @id = "sForm", autocomplete = "off", enctype = "multipart/form-data" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <li>
+                        @Html.TextBoxFor(model => model.Cid, new { @class = "inputSet input_id", placeholder = "使用者名稱" })
+                        <!-- <span id="account.errors" class="error">該帳號不存在!</span> -->
+                    </li>
+                    <li>
+                        @Html.TextBoxFor(model => model.Auth, new { @class = "inputSet input_pw", placeholder = "密碼", type = "password" })
+                    </li>
+                }
+            </ul>
+            <div class="btn"><a href="#" class="hvr-shadow" onclick="$('#sForm').submit();">登入</a></div>
+            <div class="ft">Copyright @@ 2021 All Rights Reserved.</div>
+        </div>
+    </div>
+    @section scripts{
+        <script>
+            $(function () {
+                $('input, textarea').placeholder({ customClass: 'my-placeholder' });
+            });
+        </script>
+    }
+</body>
+</html>

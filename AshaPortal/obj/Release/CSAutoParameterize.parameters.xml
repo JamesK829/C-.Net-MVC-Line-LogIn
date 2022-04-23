@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="asha1Entities-Web.config Connection String" description="asha1Entities 應用程式在 web.config 中用來存取資料庫的連接字串。" defaultValue="metadata=res://*/Model2.csdl|res://*/Model2.ssdl|res://*/Model2.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=asha1.database.windows.net;initial catalog=asha1;user id=asha;password=secret2222$;MultipleActiveResultSets=True;App=EntityFramework&quot;" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\pj\\asha\\Asha\.Admin\\AshaPortal\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='asha1Entities']/@connectionString" />
+  </parameter>
+</parameters>

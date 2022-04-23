@@ -1,0 +1,126 @@
+﻿@model AshaAdmin.ReservedViewModel
+@using AshaAdmin
+<div class="main">
+    <div class="breadcrumb">首頁>預約資料</div>
+    <div class="pageHeader">
+        <h2>預約資料管理</h2>
+    </div>
+    <div class="content">
+        <div class="mainBlock">
+            <div class="title">
+                <h3>查詢條件</h3>
+            </div>
+            @using (Html.BeginForm("Index", "Reserved", FormMethod.Post, new { @id = "indexListForm", autocomplete = "off" }))
+            {
+                @Html.AntiForgeryToken()
+                @Html.HiddenFor(model => model.PageSize)
+                <table width="100%" border="0" cellspacing="0" cellpadding="0" class="tab_sty2 mb_lg">
+                    <tr>
+                        <th>客戶姓名/LINE名稱</th>
+                        <td>
+                            @Html.TextBoxFor(x => x.SearchParameter.Keyword)
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>手機號碼</th>
+                        <td>
+                            @Html.TextBoxFor(x => x.SearchParameter.mobile)
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="col">預約日期</th>
+                        <td>
+                            @Html.TextBoxFor(x => x.SearchParameter.Min_Date)
+                            ~
+                            @Html.TextBoxFor(x => x.SearchParameter.Max_Date)
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="col">狀態</th>
+                        <td>
+                            @Html.DropDownListFor(x => x.SearchParameter.Status, new SelectList(SysConstants.StatusOption, "Key", "Value"), "全部")
+                        </td>
+                    </tr>
+                </table>
+            }
+            <div class="btnArea">
+                <a href="@Url.Action("Index")" class="bt sty2 hvr-shadow">取消</a>
+                <a href="#" class="bt sty1 hvr-shadow" onclick="$('#indexListForm').submit()">查詢</a>
+            </div>
+            <div class="title">
+                <div class="btnArea">
+                    <a href="#" class="bt sty6 hvr-shadow" onclick="deleteIt('@Url.Action("Delete")');">刪除</a>
+                </div>
+                <div class="clr"></div>
+            </div>
+            <form action="" method="post" id="uForm" name="uForm">
+                @Html.AntiForgeryToken()
+                @Html.HiddenFor(model => model.SearchParameter.Keyword)
+                @Html.HiddenFor(model => model.SearchParameter.Status)
+                @Html.HiddenFor(model => model.PageIndex)
+                <input type="hidden" name="STATUS" id="STATUS" value="" />
+                <table width="100%" border="0" cellspacing="0" cellpadding="0" class="tab_sty1 mb_lg">
+                    <tr>
+                        <th width="51" scope="col"><input type="checkbox" id="all" name="all" onclick="selectAll();" /></th>
+                        <th scope="col"><a href="#" class="order">No.</a></th>
+                        <th scope="col"><a href="#" class="order">客戶名稱/LineID</a></th>
+                        <th scope="col"><a href="#" class="order">客戶手機</a></th>
+                        <th scope="col"><a href="#" class="order">課程名稱</a></th>
+                        <th scope="col"><a href="#" class="order">預約日期</a></th>
+                        <th width="95" scope="col"><a href="#" class="order">預約時段</a></th>
+                    </tr>
+                    @foreach (var item in Model.ReservedList.Select((x, i) => new { Data = x, Index = i }))
+                    {
+                        @*<form name="pageForm">
+                            <input type="hidden" name="PageIndex" value="1" />
+                            <input type="hidden" name="cid" value="@item.Data.ID" />
+                        </form>*@
+
+                        <tr class="@(item.Index % 2 == 0)">
+                            <td align="center">
+                                <input type="checkbox" name="ids" class="ids" value="@item.Data.ID" />
+                                <input value="@item.Data.ID" hidden id="partialId" />
+                            </td>
+                            <td align="center">@((Model.ReservedList.PageNumber - 1) * Model.ReservedList.PageSize + item.Index + 1)</td>
+                            <td align="center">
+                                @item.Data.ASHA_CUSTOMER.Name  / @item.Data.ASHA_CUSTOMER.Line_Name
+                            </td>
+                            <td align="center">
+                                @item.Data.ASHA_CUSTOMER.Mobile
+                            </td>
+                            <td align="center">
+                                @Html.DisplayFor(x => item.Data.ASHA_CATEGORY.Category)-
+                                @Html.DisplayFor(x => item.Data.AHSA_PRODUCT.Product)
+                            </td>
+                            <td align="center" id="Date">@item.Data.Date.Value.ToString("yyyy-MM-dd")</td>
+                            <td align="center">@Html.DisplayFor(x => item.Data.Time)</td>
+
+
+                            @*<td align="center">@Html.DisplayFor(x => SysConstants.StatusOption[item.Data.Status])</td>*@
+                            @*<td align="center">
+            <div class="btnArea">
+                <a href="@Url.Action("Edit", new { id = item.Data.ID })" class="bt sty1 hvr-shadow styEdit">編輯內容</a>
+            </div>
+        </td>*@
+                        </tr>
+                    }
+                </table>
+            </form>
+            <!-- 分頁 -->
+            <div class="page">
+                @Html.Partial("_Paging", Model.ReservedList)
+            </div>
+        </div>
+    </div>
+</div>
+@Html.Partial("_DateTimePicker")
+<script>
+@if (Model.SearchParameter.Min_Date != null)
+{<text>$('#SearchParameter_Min_Date').val("@Model.SearchParameter.Min_Date.Value.ToString("yyyy/MM/dd")");</text>}
+@if (Model.SearchParameter.Max_Date != null)
+{<text>$('#SearchParameter_Max_Date').val("@Model.SearchParameter.Max_Date.Value.ToString("yyyy/MM/dd")");</text>}
+</script>
+
+
+
+

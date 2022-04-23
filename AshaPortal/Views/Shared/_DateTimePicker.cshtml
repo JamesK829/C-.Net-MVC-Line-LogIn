@@ -1,0 +1,39 @@
+﻿<script>
+    $('#publish_date,#publish_time,#BDay,#announce_time').val("");
+
+    $(function () {
+        var icon = '@Url.Content("~/Content/images/calendar.jpg")';
+        $('#BDay').datepicker({
+            maxDate: new Date(),
+            yearRange: "-100:+0",
+                changeYear: true,
+                dateFormat: 'yy/mm/dd',
+                showOn: 'both',
+                display: false,
+                maxDate: new Date(),
+                buttonImage: icon,
+                buttonImageOnly: true,
+                beforeShow: function (selectedDate) {
+                    if ($("#date").val() == '') {
+                        selectedDate = new Date();
+                        $("#date").val(_dateFormat(selectedDate));
+                    }
+                }
+            });
+    });
+
+    function _dateFormat(date, type) {
+        var day = date.getDate();
+        var month = date.getMonth() + 1;
+        if (month < 10) month = "0" + month;
+        if (day < 10) day = "0" + day;
+        var year = date.getFullYear();
+        if (type) {
+            var h = (type == 1) ? "00" : 23;
+            var m = (type == 1) ? "00" : 59;
+            return year + "/" + month + "/" + day + " " + h + ":" + m;
+        } else {
+            return year + "/" + month + "/" + day;
+        }
+    }
+</script>

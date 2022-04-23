@@ -1,0 +1,54 @@
+﻿<script>
+    $('#SearchParameter_Min_Date,#SearchParameter_Max_Date').val("");
+
+    $(function () {
+        var icon = '@Url.Content("~/Content/images/calendar.jpg")';
+        $('#SearchParameter_Min_Date').datepicker({
+            yearRange: "-100:+0",
+                changeYear: true,
+                dateFormat: 'yy/mm/dd',
+                showOn: 'both',
+                display:false,
+                buttonImage: icon,
+                buttonImageOnly: true,
+                beforeShow: function (selectedDate) {
+                    if ($("#SearchParameter_Min_Date").val() == '') {
+                        selectedDate = new Date();
+                        $("#SearchParameter_Min_Date").val(_dateFormat(selectedDate));
+                    }
+                }
+            });
+    });
+        $(function () {
+        var icon = '@Url.Content("~/Content/images/calendar.jpg")';
+            $('#SearchParameter_Max_Date').datepicker({
+            yearRange: "-100:+0",
+                changeYear: true,
+                dateFormat: 'yy/mm/dd',
+                showOn: 'both',
+                display:false,
+                buttonImage: icon,
+                buttonImageOnly: true,
+                beforeShow: function (selectedDate) {
+                    if ($("#SearchParameter_Max_Date").val() == '') {
+                        selectedDate = new Date();
+                        $("#SearchParameter_Max_Date").val(_dateFormat(selectedDate));
+                    }
+                }
+            });
+    });
+    function _dateFormat(date, type) {
+        var day = date.getDate();
+        var month = date.getMonth() + 1;
+        if (month < 10) month = "0" + month;
+        if (day < 10) day = "0" + day;
+        var year = date.getFullYear();
+        if (type) {
+            var h = (type == 1) ? "00" : 23;
+            var m = (type == 1) ? "00" : 59;
+            return year + "/" + month + "/" + day + " " + h + ":" + m;
+        } else {
+            return year + "/" + month + "/" + day;
+        }
+    }
+</script>

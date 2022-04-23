@@ -1,0 +1,37 @@
+﻿@model AshaPortal.ReserveList
+<div class="row" style="background-image: url('../../Content/images/AshaElement/blankBack.jpg'); background-repeat: no-repeat; background-size: cover; width: 100vw; height: 115vh;">
+    <table width="80%" border="0" cellspacing="0" cellpadding="0" class="tab_sty1 mb_lg" style="background-color:none;">
+        <tr>
+            <th style="background-color:none;">
+                預約日期
+            </th>
+            <th style="background-color:none;">
+                預約時間
+            </th>
+            <th style="background-color:none;">
+                預約項目
+            </th>
+            <th style="background-color:none;">
+                取消預約
+            </th>
+        </tr>
+        @foreach (var item in Model.ReserveListData)
+        {
+            <tr>
+
+                <td style=" background-color: rgb(0,0,0,0);">
+                    @item.ReserveDate
+                </td>
+                <td style=" background-color: rgb(0,0,0,0);">
+                    @item.ReserveTime
+                </td>
+                <td style=" background-color: rgb(0,0,0,0);">
+                    @item.ReserveCategory-@item.ReserveProd
+                </td>
+                <td style=" background-color: rgb(0,0,0,0); ">
+                    <a href="#" class="edit" onclick="location.href = ' @Url.Action("DeleteOrder", new { id = item.ReserveId })'">刪除</a>
+                </td>
+            </tr>
+        }
+    </table>
+    </div>

@@ -1,0 +1,176 @@
+﻿
+    <input name="CategoryId" id="CategoryId" value="" />
+    <input name="CategoryId" id="ProductId" value="" />
+    <input name="CategoryId" id="Id" value="" />
+
+    <div>
+        <span id='data'></span>
+    </div>
+    <div class="calendar row">
+        <div class="title col-lg-12">
+            <h1 class="green" id="calendar-title">Month</h1>
+            <h2 class="green small" id="calendar-year">Year</h2>
+            <a href="" id="prev" class="green">Prev Month</a>
+            <a href="" id="next" class="green">Next Month</a>
+        </div>
+        <div class="body col-lg-12">
+            <div class="lightgrey body-list">
+                <ul>
+                    <li>MON</li>
+                    <li>TUE</li>
+                    <li>WED</li>
+                    <li>THU</li>
+                    <li>FRI</li>
+                    <li>SAT</li>
+                    <li>SUN</li>
+                </ul>
+            </div>
+            <div class="darkgrey body-list">
+                <ul id="days">
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div id="timeOptions" class="timeOptions col-lg-12">
+        <!-- <select class="time_select"><option>14:00~16:00</option><option>16:00~18:00</option><option>18:00~20:00</option></select> -->
+
+
+    </div>
+    <div id="submitBut">
+        <input name="usernum">
+        <input name="username">
+        <input name="time" hidden>
+        <input name="date" hidden>
+        <input name="product" hidden>
+    </div>
+    <a href="#" id="submit" hidden><button class="submit">預約</button></a>
+}
+    <script>
+
+
+        document.getElementById("data").innerHTML = localStorage.getItem("txtValue");
+
+        var month_olympic = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+        var month_normal = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+        var month_name = ["January", "Febrary", "March", "April", "May", "June", "July", "Auguest", "September", "October", "November", "December"];
+        var holder = document.getElementById("days");
+        var prev = document.getElementById("prev");
+        var next = document.getElementById("next");
+        var ctitle = document.getElementById("calendar-title");
+        var cyear = document.getElementById("calendar-year");
+        var my_date = new Date();
+        var my_year = my_date.getFullYear();
+        var my_month = my_date.getMonth();
+        var my_day = my_date.getDate();
+        var my_week = my_date.getDay();
+        function dayStart(month, year) {
+            var tmpDate = new Date(year, month, 1);
+            return (tmpDate.getDay());
+        }
+        function daysMonth(month, year) {
+            var tmp = year % 4;
+            if (tmp == 0) {
+                return (month_olympic[month]);
+            } else {
+                return (month_normal[month]);
+            }
+        }
+        function refreshDate() {
+            var str = "";
+            var totalDay = daysMonth(my_month, my_year); //获取该月总天数
+            var firstDay = dayStart(my_month, my_year); //获取该月第一天是星期几
+            var myclass;
+            for (var i = 1; i < firstDay; i++) {
+                str += "<li></li>"; //为起始日之前的日期创建空白节点
+            }
+            for (var i = 1; i <= totalDay; i++) {
+                if ((i < my_day && my_year == my_date.getFullYear() && my_month == my_date.getMonth()) || i == my_day + (7 - my_week) || i == my_day + (14 - my_week) || i == my_day + (21 - my_week) || i == my_day + (28 - my_week)
+                    || my_year < my_date.getFullYear() || (my_year == my_date.getFullYear() && my_month < my_date.getMonth())) {
+                    myclass = " class='lightgrey'"; //当该日期在今天之前时，以浅灰色字体显示
+                }
+                // else if (i==my_day && my_year==my_date.getFullYear() && my_month==my_date.getMonth()){
+                // 	myclass = " class='green greenbox date'"; //当天日期以绿色背景突出显示
+                // }
+                else if (my_day==0) {
+                    myclass = " class='lightgrey'";
+                }
+                else {
+                    myclass = " class='darkgrey date'"; //当该日期在今天之后时，以深灰字体显示
+                }
+                str += "<li" + myclass + " value=" + i + ">" + "<a herf=\"#\">" + i + "</a>" + "</li>"; //创建日期节点
+            }
+            holder.innerHTML = str; //设置日期显示
+            ctitle.innerHTML = month_name[my_month]; //设置英文月份显示
+            cyear.innerHTML = my_year; //设置年份显示
+        }
+        refreshDate();
+
+        prev.onclick = function (e) {
+            e.preventDefault();
+            my_month--;
+            if (my_month < 0) {
+                my_year--;
+                my_month = 11;
+            }
+            refreshDate();
+        }
+        next.onclick = function (e) {
+            //if month>getMonth()+1??
+            e.preventDefault();
+            my_month++;
+            if (my_month > 11) {
+                my_year++;
+                my_month = 0;
+            }
+            if ($('#time')) {
+                $('#time').remove();
+            }
+            refreshDate();
+        }
+
+        $('body').on('click', '.date', function () {
+            console.log(this);
+            var list = document.getElementsByClassName('date');
+            if ($('#time')) {
+                $('#time').remove();
+            }
+            for (i = 0; i < list.length; i++) {
+                list[i].classList.remove("green");
+                list[i].classList.remove("greenbox");
+            }
+            $(this).addClass("green greenbox selectedDate");
+            $('#timeOptions').append('<select id="time" class="time_select"><option selected disable>請選擇</option><option>14:00~16:00</option><option>16:00~18:00</option><option>18:00~20:00</option></select>')
+            // alert($(this).val());
+            // alert((my_month+1).toString())
+        })
+
+        $('#timeOptions').on('change', function () {
+            $('#submitBu').attr('hidden', true);
+            $('#submit').attr('hidden', false);
+        })
+
+    $('#reserve').on('click', function () {
+        var date = $('.selectedDate').val();
+        var selectDate = new Date();
+        selectDate.getDate = date;
+
+
+        $.ajax({
+            url:@Url.Action("Reserve","Reserve"),
+            method: 'Post',
+            data: {
+                date: selectDate,
+                productId: productId,
+                categoryId: categoryId,
+                cusId:id
+            },
+            success: function () {
+
+            }
+        })
+
+
+    })
+
+
+    </script>

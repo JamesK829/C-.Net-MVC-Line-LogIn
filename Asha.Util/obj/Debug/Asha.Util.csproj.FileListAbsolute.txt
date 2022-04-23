@@ -1,0 +1,9 @@
+C:\pj\asha\Asha.Admin\Asha.Util\bin\Debug\Asha.Util.dll
+C:\pj\asha\Asha.Admin\Asha.Util\bin\Debug\Asha.Util.pdb
+C:\pj\asha\Asha.Admin\Asha.Util\bin\Debug\log4net.dll
+C:\pj\asha\Asha.Admin\Asha.Util\bin\Debug\log4net.xml
+C:\pj\asha\Asha.Admin\Asha.Util\obj\Debug\Asha.Util.csproj.AssemblyReference.cache
+C:\pj\asha\Asha.Admin\Asha.Util\obj\Debug\Asha.Util.csproj.CoreCompileInputs.cache
+C:\pj\asha\Asha.Admin\Asha.Util\obj\Debug\Asha.Util.csproj.CopyComplete
+C:\pj\asha\Asha.Admin\Asha.Util\obj\Debug\Asha.Util.dll
+C:\pj\asha\Asha.Admin\Asha.Util\obj\Debug\Asha.Util.pdb

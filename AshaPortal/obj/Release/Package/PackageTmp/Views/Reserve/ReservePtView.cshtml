@@ -1,0 +1,194 @@
+﻿@model AshaPortal.DateForm
+<div class="calendar col-sm-12" id="calendar" style="width:80%; opacity:0.9; font-size:18px;">
+    <input id="yearData" value="@Model.Year" hidden />
+    <input id="monthData" value="@Model.Month" hidden />
+    <div class="title" style="width:80%; margin-left:10%; ">
+        <h2 class="green" id="calendar-title" style=" padding-top:10%; height:20px;">
+            @if (Model.Month == 0 && Model.Year == 0)
+            {
+                @System.Globalization.CultureInfo.GetCultureInfo("en-US").DateTimeFormat.GetMonthName(DateTime.Now.Month)
+            }
+            else
+            {
+                @System.Globalization.CultureInfo.GetCultureInfo("en-US").DateTimeFormat.GetMonthName(new DateTime(Model.Year, Model.Month, 1).Month)
+            }
+        </h2>
+        <h2 class="green small" id="calendar-year" style="margin-top: 15%;">
+            @if (Model.Year == 0)
+            {
+                @DateTime.Now.Year;
+            }
+            else
+            {
+                @(new DateTime(Model.Year, Model.Month, 1).Year)
+            }
+        </h2>
+
+        @if (Model.Month <= DateTime.Now.Month)
+        {
+            <a href="#" id="prev" class="gray">Prev Month</a>
+        }
+        else
+        {
+            <a href="#" id="prev" class="green">Prev Month</a>
+        }
+        <a href="#" id="next" class="green" style="margin-left:15%;">Next Month</a>
+    </div>
+    <div class="body " style="margin-top:5%;">
+        <div class="lightgrey body-list">
+            <ul>
+                <li>SUN</li>
+                <li>MON</li>
+                <li>TUE</li>
+                <li>WED</li>
+                <li>THU</li>
+                <li>FRI</li>
+                <li>SAT</li>
+            </ul>
+        </div>
+        <div class="darkgrey body-list">
+            <ul style="font-size: 18px;">
+                @if (Model.Month == 0 && Model.Year == 0)
+                {
+                    Model.Month = DateTime.Now.Month;
+                    Model.Year = DateTime.Now.Year;
+                }
+                @for (int i = 0; i < (int)(new DateTime(Model.Year, Model.Month, 1).DayOfWeek); i++)
+                {
+                    <li></li>
+                }
+
+                @for (int i = 1; i <= DateTime.DaysInMonth(Model.Year, Model.Month); i++)
+                {
+                    if (Model.Year == DateTime.Now.Year && Model.Month == DateTime.Now.Month)
+                    {
+                        if (i < DateTime.Now.Day || (int)(new DateTime(Model.Year, Model.Month, i).DayOfWeek) == 0)
+                        {
+                            <li class="lightgrey" value="@i">@i</li>
+                        }
+                        else
+                        {
+                            <li class="darkgrey date" value="@i">@i</li>
+                        }
+                    }
+                    else
+                    {
+                        if ((int)(new DateTime(Model.Year, Model.Month, i).DayOfWeek) == 0)
+                        {
+                            <li class="lightgrey" value="@i">@i</li>
+                        }
+                        else
+                        {
+                            <li class="darkgrey date" value="@i">@i</li>
+                        }
+                    }
+                }
+            </ul>
+        </div>
+    </div>
+</div>
+<div id="timeOptions" class=" col-sm-12" style="margin-top:10%;">
+    @for (int i = 1; i < 32; i++)
+    {
+        <select id="@(i.ToString()+"sls")" class="@i  xxx mobileSelect" hidden>
+            <option selected disable>請選擇</option>
+            @foreach (var item in Model.Time)
+            {
+                if (int.Parse(item.Value.Split(',')[0]) == i)
+                {
+                    <option class="to" id="@item.Key" value="@item.Value.Split(',')[0]" @item.Value.Split(',')[2]>@item.Value.Split(',')[1]</option>
+                }
+            }
+        </select>
+    }
+</div>
+
+
+<script>
+    prev.onclick = function (e) {
+        e.preventDefault();
+        var thisMonth =@DateTime.Now.Month
+        var theYear =@Model.Year;
+        var theMonth =@Model.Month;
+        if (theMonth > thisMonth) {
+            if (theMonth == 1) {
+                theYear--;
+                theMonth = 12;
+            } else {
+                theMonth = theMonth-1;
+            }
+            $.ajax({
+                type: "Post",
+                cache: false,
+                url:'@Url.Action("ReservePtView")',
+                data: {
+                    month:theMonth,
+                    year: theYear,
+                    __RequestVerificationToken: gettoken()
+                }
+            }).done(function (data) {
+                $("#calendar").remove();
+                $("#ptView").html(data);
+                $("#reserve").attr('hidden',true)
+            }).fail(function (xhr) {
+            });
+        }
+    }
+    next.onclick = function (e) {
+        var theYear =@Model.Year;
+        var theMonth =@Model.Month;
+            if (theMonth == 12) {
+                theYear++;
+                theMonth = 1;
+            } else {
+                theMonth = theMonth+1;
+            }
+            e.preventDefault();
+                    $.ajax({
+            type: "Post",
+            cache: false,
+            url:'@Url.Action("ReservePtView")',
+            data: {
+                ProductId: '@Model.ProductId',
+                month: theMonth,
+                year: theYear,
+                __RequestVerificationToken: gettoken()
+            },
+             success: function (data) {
+                $("#calendar").remove();
+                 $("#ptView").html(data);
+                 $("#reserve").attr('hidden', true)
+            }
+            }
+           ).fail(function (xhr) {
+        });
+    }
+    $('body').on('click', '.date', function () {
+            var list = document.getElementsByClassName('date');
+            for (i = 0; i < list.length; i++) {
+                list[i].classList.remove("green");
+                list[i].classList.remove("greenbox");
+                list[i].classList.remove("selectedDate");
+            }
+            $(this).addClass("green greenbox selectedDate");
+            hideData();
+            showData();
+    })
+    function showData() {
+            var targetId = $('.selectedDate').val();
+            $(`#${targetId}sls`).attr('hidden', false);
+    }
+    function hideData() {
+            var list = document.getElementsByClassName('xxx');
+            var x = [];
+            for (i = 0; i < list.length; i++) {
+                    x.push(list[i].id)
+            }
+            for (i = 0; i < x.length; i++) {
+                $(`#${x[i]}`).attr('hidden', true);
+            }
+    }
+    $('.xxx').on('change', function () {
+            $('#reserve').css('display', 'block');
+    })
+</script>

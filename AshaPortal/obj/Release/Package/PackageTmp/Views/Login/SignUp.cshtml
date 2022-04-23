@@ -1,0 +1,76 @@
+﻿@model AshaPortal.CustomerForm
+
+@using (Html.BeginForm("SignUp", "Login", FormMethod.Post, new { @id = "sForm", autocomplete = "off" }))
+{
+    @Html.HiddenFor(x => x.Avatar)
+    @Html.HiddenFor(x => x.LineId)
+    @Html.HiddenFor(x => x.Line_Title)
+    @Html.AntiForgeryToken()
+    <div style="background-image: url('../../Content/images/AshaElement/signUpBack.jpg'); background-repeat: no-repeat; background-size: contain; width: 100vw; height: 115vh; ">
+        @if (string.IsNullOrEmpty(Model.Avatar))
+        {
+            <img src="~/Content/images/AshaElement/signUpPic.png" style="width: 20vw; padding-top:18vh; margin-left: auto; margin-right: auto; display: block; ">
+        }
+        else
+        {
+            <div style="padding-top: 0.05%;"></div>
+            <img src="@Model.Avatar" style="width: 30vw; height: 30vw; border-radius: 50%; margin-top: 18vh; margin-left: auto; margin-right: auto; display: block; ">
+        }
+        <div style="background-image: url('../../Content/images/AshaElement/signUpName.png'); background-repeat: no-repeat; background-size: contain; width: 50vw;
+       height: 100%; display: flex; margin-top: 7vh; margin-left: auto; margin-right: auto; display: block;">
+            @Html.TextBoxFor(x => x.Name, new { @class = "signUpInput", maxlength = "16", style = "padding-top:5vh;" })
+            @Html.ValidationMessageFor(x => x.Name)
+        </div>
+        <div style="background-image: url('../../Content/images/AshaElement/signUpBD.png'); background-repeat: no-repeat; background-size: contain; width: 50vw;
+       height: 100%; display: flex; margin-top: -101.5vh; margin-left: auto; margin-right: auto; display: block;">
+            @Html.TextBoxFor(x => x.BDay, new { @class = "signUpInput", type = "date", inputmode = "numeric", style = "padding-top:5vh;" , id="BD" })
+            @Html.ValidationMessageFor(x => x.BDay)
+        </div>
+        <div style="background-image: url('../../Content/images/AshaElement/signUpMobile.png'); background-repeat: no-repeat; background-size: contain; width: 50vw;
+       height: 100%; display: flex; margin-top: -101vh; margin-left: auto; margin-right: auto; display: block;">
+            @Html.TextBoxFor(x => x.Mobile, new { @class = "signUpInput", inputmode = "numeric", maxlength = "10", style = "padding-top:5vh;" })
+            @Html.ValidationMessageFor(x => x.Mobile)
+        </div>
+        <a id="submit" href="#">
+            <img src="~/Content/images/AshaElement/signupBut.png" style=" margin-top: -101vh; width: 80vw; margin-left: auto; margin-right: auto; display: block;">
+        </a>
+    </div>
+}
+<script>
+    @if (Model.BDay != null && Model.BDay.Year != 1){<text>$('#BDay').val("@Model.BDay.ToString("yyyy/MM/dd")");</text>}
+    var maxBD = new Date();
+    let LineLoginUrl = "@Url.Action("GetLineLoginUrl","LineLogin")";
+    function openPopupWindow() {
+        $("#result").html("");
+        $.ajax({
+            url: LineLoginUrl,
+            method: "get",
+            success: function (url) {
+                window.open(url, "_blank", "width=800px,height=600px");
+            }, error: function (xhr) {
+                console.log(xhr);
+            }
+        });
+    }
+    $('#submit').on('click', function () {
+        $('#sForm').submit();
+    })
+    $(document).ready(function () {
+        var today = new Date();
+        var dd = today.getDate();
+        var mm = today.getMonth() + 1; //January is 0 so need to add 1 to make it 1!
+        var yyyy = today.getFullYear();
+        if (dd < 10) {
+            dd = '0' + dd
+        }
+        if (mm < 10) {
+            mm = '0' + mm
+        }
+
+        today = yyyy + '-' + mm + '-' + dd;
+        document.getElementById("BD").setAttribute("max", today);
+    })
+
+</script>
+
+

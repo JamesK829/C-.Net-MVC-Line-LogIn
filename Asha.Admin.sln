@@ -1,0 +1,61 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31424.327
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Asha.Admin", "Asha.Admin\Asha.Admin.csproj", "{FB535D5C-3D7A-4BAA-A4E3-8C82A77DB5C9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Asha.Model", "Asha.Model\Asha.Model.csproj", "{F0E8A5B9-2129-4036-87BF-278846385D40}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Asha.Service", "Asha.Service\Asha.Service.csproj", "{FED5ABBF-9C52-45CD-838E-613684DA5623}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Asha.Repository", "Asha.Repository\Asha.Repository.csproj", "{EEE54598-E35B-4B6A-91CA-C1E96CBB1755}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Asha.Util", "Asha.Util\Asha.Util.csproj", "{F85A4689-03CB-4964-B051-4599603C78F2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AshaPortal", "AshaPortal\AshaPortal.csproj", "{CF3B6378-67E5-41CE-B246-08E84803786A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PortalService", "PortalService\PortalService.csproj", "{7B7F745F-A1FA-4CD9-841F-B51F3A76A4F4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FB535D5C-3D7A-4BAA-A4E3-8C82A77DB5C9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FB535D5C-3D7A-4BAA-A4E3-8C82A77DB5C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FB535D5C-3D7A-4BAA-A4E3-8C82A77DB5C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FB535D5C-3D7A-4BAA-A4E3-8C82A77DB5C9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F0E8A5B9-2129-4036-87BF-278846385D40}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F0E8A5B9-2129-4036-87BF-278846385D40}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F0E8A5B9-2129-4036-87BF-278846385D40}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F0E8A5B9-2129-4036-87BF-278846385D40}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FED5ABBF-9C52-45CD-838E-613684DA5623}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FED5ABBF-9C52-45CD-838E-613684DA5623}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FED5ABBF-9C52-45CD-838E-613684DA5623}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FED5ABBF-9C52-45CD-838E-613684DA5623}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EEE54598-E35B-4B6A-91CA-C1E96CBB1755}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EEE54598-E35B-4B6A-91CA-C1E96CBB1755}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EEE54598-E35B-4B6A-91CA-C1E96CBB1755}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EEE54598-E35B-4B6A-91CA-C1E96CBB1755}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F85A4689-03CB-4964-B051-4599603C78F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F85A4689-03CB-4964-B051-4599603C78F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F85A4689-03CB-4964-B051-4599603C78F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F85A4689-03CB-4964-B051-4599603C78F2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CF3B6378-67E5-41CE-B246-08E84803786A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CF3B6378-67E5-41CE-B246-08E84803786A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CF3B6378-67E5-41CE-B246-08E84803786A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CF3B6378-67E5-41CE-B246-08E84803786A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7B7F745F-A1FA-4CD9-841F-B51F3A76A4F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7B7F745F-A1FA-4CD9-841F-B51F3A76A4F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7B7F745F-A1FA-4CD9-841F-B51F3A76A4F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7B7F745F-A1FA-4CD9-841F-B51F3A76A4F4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {DF2895D7-4BF5-4827-A1AE-CAACEBB4BA44}
+	EndGlobalSection
+EndGlobal

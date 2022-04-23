@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "mssql1": {
+      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.Sql/servers/asha1/databases/asha1",
+      "type": "mssql.azure",
+      "connectionId": "ConnectionStrings:Server=tcp:asha1.database.windows.net,1433;InitialCatalog=asha1;PersistSecurityInfo=False;UserID=asha;Password=secret2222$;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;ConnectionTimeout=30;",
+      "secretStore": "AzureAppSettings"
+    }
+  }
+}

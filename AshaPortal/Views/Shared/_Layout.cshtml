@@ -1,0 +1,73 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html, charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A'sha</title>
+    <link rel="stylesheet" href="~/Content/css/global.css" type="text/css">
+    <link rel="stylesheet" href="~/Content/css/jquery-ui-timepicker-addon.min.css" type="text/css">
+    <link rel="stylesheet" href="~/Content/css/jquery-ui.min.css" type="text/css">
+    <link rel="stylesheet" href="~/Content/css/jquery-ui.theme.min.css" type="text/css">
+
+    <script charset="utf-8" src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4/lodash.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/PamornT/flex2html@main/js/flex2html.min.js"></script>
+    <script src="~/Scripts/jquery-3.6.0.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/jquery-ui-1.12.1.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/jquery-ui-timepicker-addon.js" type="text/javascript"></script>
+    <script src="~/Scripts/jquery.ui.datepicker-zh-TW.js" type="text/javascript"></script>
+
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css" />
+    <script>
+                @if (TempData["Message"] != null)
+            {
+            <text>
+        var message = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(TempData["Message"]));
+        console.log(message)
+            alert(message);
+            //location.reload();
+            </text>
+            TempData["Message"] = null;
+            }
+    </script>
+    <script>
+        //重寫alert
+        window.alert = function (name) {
+            var iframe = document.createElement("IFRAME");
+            iframe.style.display = "none";
+            iframe.setAttribute("src", 'data:text/plain,');
+            document.documentElement.appendChild(iframe);
+            window.frames[0].window.alert(name);
+            iframe.parentNode.removeChild(iframe);
+        }
+        //重寫confirm 不顯示ip地址
+        var wConfirm = window.confirm;
+        window.confirm = function (message) {
+            try {
+                var iframe = document.createElement("IFRAME");
+                iframe.style.display = "none";
+                iframe.setAttribute("src", 'data:text/plain,');
+                document.documentElement.appendChild(iframe);
+                var alertFrame = window.frames[0];
+                var iwindow = alertFrame.window;
+                if (iwindow == undefined) {
+                    iwindow = alertFrame.contentWindow;
+                }
+                var result = iwindow.confirm(message);
+                iframe.parentNode.removeChild(iframe);
+                return result;
+            }
+            catch (exc) {
+                return wConfirm(message);
+            }
+        }
+    </script>
+</head>
+<body>
+    @RenderBody()
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

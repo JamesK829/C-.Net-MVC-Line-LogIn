@@ -1,0 +1,79 @@
+﻿@model AshaPortal.ReserveViewModel
+<form id='sForm'>
+    <div style="background-image: url('../../Content/images/AshaElement/productBack.jpg'); background-repeat: no-repeat; background-size: cover; width: 100vw; height: 115vh;">
+        <select id="CategoryIdData" name="CategoryId" style="height: 45px;" class="form-control mobileSelect">
+            <option>請選擇</option>
+            @foreach (var item in Model.CategoryList)
+            {
+                <option value="@item.CategoryId" >@item.CategoryName</option>
+            }
+        </select>
+        <div id="product" style="margin-top:5%;">
+        </div>
+        <img src="~/Content/images/AshaElement/pickDate.png"  style="margin-top:15vh; width: 80vw; margin-left: auto; margin-right: auto; display:none;" id="reserve" />
+        <input name="CategoryId" id="CategoryId" value="" hidden />
+        <input name="ProductId" id="ProductId" value="" hidden />
+        <input name="customerId" id="customerId" value="@Model.Id" hidden />
+
+    </div>
+</form>
+<form name="pageForm"><input type="hidden" name="Id" value="" id="data" /></form>
+<script>
+        $(document).ready(function () {
+            $('#CategoryIdData').on('change', function () {
+                var Id = document.getElementById('CategoryIdData');
+                getPage(Id.value);
+            })
+        })
+        $(document).ready(function () {
+            $('#product').on('change', function () {
+                $('#reserve').css('display', 'block');
+            })
+        })
+        function getPage(Id) {
+               var x = document.getElementById('data');
+               document.pageForm.data.value = Id;
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("ProductPage")",
+                data: new FormData(document.pageForm),
+                dataType: "html",
+                async: true,
+                processData: false,
+                contentType: false
+            }).done(function (data) {
+                $("#product").html(data);
+            }).fail(function (response) {
+                console.log('api_post_user: Fail ' + response.responseText)
+            });
+    }
+    $('#reserve').on('click', function () {
+        var productId = $('#bodyOption').val();
+        var categoryId = $('#CategoryIdData').val();
+        $.ajax({
+            type: "POST",
+            cache: false,
+            url: '@Url.Action("Product", "Reserve")',
+            dataType: "json",
+            data: {
+                pId: productId,
+                cId: categoryId,
+                __RequestVerificationToken: gettoken()
+            },
+            success: function (xhr) {
+                window.location.href = xhr.redirectToUrl;
+            },
+            error: function (xhr) {
+                alert('Request Status: ' + xhr.status + ' Status Text: ' + xhr.statusText + ' ' + xhr.responseText);
+            }
+
+        });
+    });
+</script>
+<script type="text/javascript">
+    function gettoken() {
+        var token = '@Html.AntiForgeryToken()';
+        token = $(token).val();
+        return token;
+   }
+</script>

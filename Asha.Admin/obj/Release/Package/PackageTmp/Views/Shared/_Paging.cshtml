@@ -1,0 +1,56 @@
+﻿@using PagedList.Mvc
+@model PagedList.IPagedList
+<style>
+    .active a {
+        background: #008864;
+        color: #fff;
+    }
+</style>
+@if (Model.PageCount > 0)
+{
+    <center>
+        @Html.PagedListPager(Model,
+        page => Url.Action(ViewContext.RouteData.Values["action"].ToString(), new { page }),
+         new PagedListRenderOptions { LinkToFirstPageFormat = "最前頁", LinkToPreviousPageFormat = "&lt;上一頁", LinkToNextPageFormat = "下一頁&gt", LinkToLastPageFormat = "最終頁" })
+    </center>
+    <script type="text/javascript">
+        $('.pagination .current').removeClass('current');
+        var targetFormId = '#indexListForm';
+        var pagenum = $('.pagination >　li').val();
+        $(document).ready(function () {
+            if (pagenum == PageIndex) {
+                alert(this);
+                $(this).addClass('current');
+            }
+        });
+        $(function () {
+            //alert($(targetFormId).attr("action"));
+            $('.pagination>li>a[href]').each(function (i, item) {
+                var page = $(item).attr('href').replace($(targetFormId).attr("action") + '?page=', '');
+                console.log($(item).attr('href'));
+                console.log($(targetFormId).attr("action"));
+                //alert($(item).html());
+                $(item).attr('href', '#').click(function () { postPage(page); });
+            });
+        });
+
+        function postPage(page) {
+            if ($(targetFormId).length > 0) {
+                $('<input>')
+                    .attr({ type: 'hidden', id: 'PageIndex', name: 'PageIndex', value: page})
+                    .appendTo($(targetFormId));
+                $(targetFormId).submit();
+            }
+        };
+
+        function changePageSize(pageSize) {
+            if ($(targetFormId).size() > 0) {
+                $(targetFormId).find('#PageSize').val(pageSize);
+                $(targetFormId).submit();
+            }
+        };
+        $(document).ready(function () {
+            $('.pagination li.disabled').hide();
+        });
+    </script>
+}

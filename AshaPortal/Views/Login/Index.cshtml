@@ -1,0 +1,23 @@
+﻿@model AshaPortal.CheckPhone
+@{
+    Layout = "~/Views/Shared/_LayoutBeforeLogin.cshtml";
+}
+<div style="background-image: url('../../Content/images/AshaElement/loginBack.jpg'); background-repeat: no-repeat; background-size: contain; width: 100vw; height: 115vh;">
+    <img src="~/Content/images/AshaElement/loginInButton.jpg" style="width: 30vw; padding-top: 155%; margin-left: auto; margin-right: auto; display:block; z-index: 1; " onclick="openPopupWindowLine()">
+</div>
+
+<script>
+        let LineLoginUrl = "@Url.Action("GetLineLoginUrl","LineLogin")";
+    function openPopupWindowLine() {
+        $("#result").html("");
+        $.ajax({
+            url: LineLoginUrl,
+            method: "get",
+            success: function (url) {
+                window.location.href=url;
+            }, error: function (xhr) {
+                console.log(xhr);
+            }
+        });
+    }
+</script>

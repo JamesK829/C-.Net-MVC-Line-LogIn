@@ -1,0 +1,168 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="AshaModel1" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="ASHA_CUSTOMER">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="String" MaxLength="32" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="LINE_ID" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="MOBILE" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="NAME" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="BIRTHDAY" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="CREATOR" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CREATE_TIME" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="MODIFIER" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="MODIFY_TIME" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="STATUS" Type="String" MaxLength="1" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="ASHA_ORDER" Relationship="Self.FK_ASHA_ORDER_CUSTOMER" FromRole="ASHA_CUSTOMER" ToRole="ASHA_ORDER" />
+  </EntityType>
+  <EntityType Name="ASHA_MANAGER">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="String" MaxLength="32" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="CID" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="NAME" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="AUTH" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ROLE" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CREATOR" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CREATE_TIME" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="MODIFIER" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="MODIFY_TIME" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="STATUS" Type="String" MaxLength="1" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ASHA_ORDER">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="String" MaxLength="32" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="CUSTOMER_ID" Type="String" MaxLength="32" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="PRODUCT_ID" Type="String" MaxLength="32" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="DATE" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="TIME_ID" Type="String" MaxLength="1" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CREATOR" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CREATE_TIME" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="MODIFIER" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="MODIFY_TIME" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="STATUS" Type="String" MaxLength="1" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="ASHA_CUSTOMER" Relationship="Self.FK_ASHA_ORDER_CUSTOMER" FromRole="ASHA_ORDER" ToRole="ASHA_CUSTOMER" />
+    <NavigationProperty Name="ASHA_PRODUCT" Relationship="Self.FK_ASHA_ORDER_PRODUCT" FromRole="ASHA_ORDER" ToRole="ASHA_PRODUCT" />
+    <NavigationProperty Name="ASHA_SERVE_TIME" Relationship="Self.FK_ASHA_ORDER_TIME" FromRole="ASHA_ORDER" ToRole="ASHA_SERVE_TIME" />
+  </EntityType>
+  <EntityType Name="ASHA_PRODUCT">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="String" MaxLength="32" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="CATEGORY_ID" Type="String" MaxLength="32" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="PRODUCT" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CREATOR" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CREATE_TIME" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="MODIFIER" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="MODIFY_TIME" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="STATUS" Type="String" MaxLength="1" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="ASHA_ORDER" Relationship="Self.FK_ASHA_ORDER_PRODUCT" FromRole="ASHA_PRODUCT" ToRole="ASHA_ORDER" />
+    <NavigationProperty Name="ASHA_PRODUCT_CATEGORY" Relationship="Self.FK_ASHA_PRODUCT_CATEGORY" FromRole="ASHA_PRODUCT" ToRole="ASHA_PRODUCT_CATEGORY" />
+  </EntityType>
+  <EntityType Name="ASHA_PRODUCT_CATEGORY">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="String" MaxLength="32" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="CATEGORY" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CREATOR" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CREATE_TIME" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="MODIFIER" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="MODIFY_TIME" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="STATUS" Type="String" MaxLength="1" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="ASHA_PRODUCT" Relationship="Self.FK_ASHA_PRODUCT_CATEGORY" FromRole="ASHA_PRODUCT_CATEGORY" ToRole="ASHA_PRODUCT" />
+  </EntityType>
+  <EntityType Name="ASHA_SERVE_TIME">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="String" MaxLength="1" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="TIME" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="ASHA_ORDER" Relationship="Self.FK_ASHA_ORDER_TIME" FromRole="ASHA_SERVE_TIME" ToRole="ASHA_ORDER" />
+  </EntityType>
+  <Association Name="FK_ASHA_ORDER_CUSTOMER">
+    <End Role="ASHA_CUSTOMER" Type="Self.ASHA_CUSTOMER" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="ASHA_ORDER" Type="Self.ASHA_ORDER" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ASHA_CUSTOMER">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ASHA_ORDER">
+        <PropertyRef Name="CUSTOMER_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ASHA_ORDER_PRODUCT">
+    <End Role="ASHA_PRODUCT" Type="Self.ASHA_PRODUCT" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="ASHA_ORDER" Type="Self.ASHA_ORDER" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ASHA_PRODUCT">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ASHA_ORDER">
+        <PropertyRef Name="PRODUCT_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ASHA_ORDER_TIME">
+    <End Role="ASHA_SERVE_TIME" Type="Self.ASHA_SERVE_TIME" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="ASHA_ORDER" Type="Self.ASHA_ORDER" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ASHA_SERVE_TIME">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ASHA_ORDER">
+        <PropertyRef Name="TIME_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ASHA_PRODUCT_CATEGORY">
+    <End Role="ASHA_PRODUCT_CATEGORY" Type="Self.ASHA_PRODUCT_CATEGORY" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="ASHA_PRODUCT" Type="Self.ASHA_PRODUCT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ASHA_PRODUCT_CATEGORY">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ASHA_PRODUCT">
+        <PropertyRef Name="CATEGORY_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="AshaEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="ASHA_CUSTOMER" EntityType="Self.ASHA_CUSTOMER" />
+    <EntitySet Name="ASHA_MANAGER" EntityType="Self.ASHA_MANAGER" />
+    <EntitySet Name="ASHA_ORDER" EntityType="Self.ASHA_ORDER" />
+    <EntitySet Name="ASHA_PRODUCT" EntityType="Self.ASHA_PRODUCT" />
+    <EntitySet Name="ASHA_PRODUCT_CATEGORY" EntityType="Self.ASHA_PRODUCT_CATEGORY" />
+    <EntitySet Name="ASHA_SERVE_TIME" EntityType="Self.ASHA_SERVE_TIME" />
+    <AssociationSet Name="FK_ASHA_ORDER_CUSTOMER" Association="Self.FK_ASHA_ORDER_CUSTOMER">
+      <End Role="ASHA_CUSTOMER" EntitySet="ASHA_CUSTOMER" />
+      <End Role="ASHA_ORDER" EntitySet="ASHA_ORDER" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ASHA_ORDER_PRODUCT" Association="Self.FK_ASHA_ORDER_PRODUCT">
+      <End Role="ASHA_PRODUCT" EntitySet="ASHA_PRODUCT" />
+      <End Role="ASHA_ORDER" EntitySet="ASHA_ORDER" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ASHA_ORDER_TIME" Association="Self.FK_ASHA_ORDER_TIME">
+      <End Role="ASHA_SERVE_TIME" EntitySet="ASHA_SERVE_TIME" />
+      <End Role="ASHA_ORDER" EntitySet="ASHA_ORDER" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ASHA_PRODUCT_CATEGORY" Association="Self.FK_ASHA_PRODUCT_CATEGORY">
+      <End Role="ASHA_PRODUCT_CATEGORY" EntitySet="ASHA_PRODUCT_CATEGORY" />
+      <End Role="ASHA_PRODUCT" EntitySet="ASHA_PRODUCT" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

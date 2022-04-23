@@ -1,0 +1,39 @@
+﻿@model AshaPortal.CheckPhone
+<div class="row reserve" style="width: 100vw; text-align: center; ">
+    <div class="row-sm-12">
+        <h4>請輸入手機及密碼</h4>
+    </div>
+    <div class="row-sm-12">
+    </div>
+    @using (Html.BeginForm("PhoneLogIn", "Login", FormMethod.Post, new { @id = "sForm", autocomplete = "off" }))
+    {
+        @Html.AntiForgeryToken()
+        <div class="row-sm-12">
+            <h5>手機號碼</h5>
+            @Html.TextBoxFor(x => x.phone, new { maxlength = 10, @class = "", @type = "number" })
+            <h5>密碼</h5>
+            @Html.TextBoxFor(x => x.auth, new { @type = "password" })
+        </div>
+        <button onclick="$('#sForm').submit();" style="margin-top:20px;">登入</button>
+    }
+    <div class="row-sm-12 contentNav_sub" style=" margin-right: 10px; margin-top: 10%;">
+        <a class=" btn_round" href="@Url.Action("SignUp")">
+            註冊
+        </a>
+    </div>
+
+</div>
+<script>
+    $(document).on("keypress", ".phone", function (e) {
+        let charCode = (e.which) ? e.which : e.keyCode;
+        if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+            return false;
+        }
+    });
+    $(document).on('keyup', '.phone', function (e) {
+            let charCode = (e.which) ? e.which : e.keyCode;
+            if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+                return false;
+        }
+    });
+</script>

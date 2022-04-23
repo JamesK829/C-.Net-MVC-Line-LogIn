@@ -1,0 +1,95 @@
+﻿@model AshaPortal.DateForm
+<div style="background-image: url('../../Content/images/AshaElement/blankBack.jpg'); background-repeat: no-repeat; background-size: cover; width: 100vw; height: 115vh; z-index: -1; margin-top: -6%; ">
+    <div id="ptView">
+    </div>
+    <img id="reserve" src="~/Content/images/AshaElement/reserveCheckBut.png" style="margin-top:10vh;width: 80vw; margin-left: auto; margin-right: auto; display:none;" />
+</div>
+
+<script>
+    checkFirstLoad();
+    function checkFirstLoad() {
+
+        var theYear =@Model.Year;
+        var theMonth =@Model.Month;
+        if (theYear == 0 && theMonth == 0) {
+            aja();
+        }
+    }
+    function aja() {
+        var theYear =@Model.Year;
+        var theMonth =@Model.Month;
+                    $.ajax({
+                        type: "Post",
+                        cache: false,
+                        url:'@Url.Action("ReservePtView")',
+                        //method: 'Post',
+                        data: {
+                            ProductId: '@Model.ProductId',
+                            month: theMonth,
+                            year: theYear,
+                            __RequestVerificationToken: gettoken()
+                        }
+                    }).done(function (data) {
+                        $("#ptView").html(data);
+                    }).fail(function (xhr) {
+                        alert('系統錯誤')
+                    });
+        }
+    function timeShow() {
+         var to = document.getElementsByClassName('to');
+            var x = [];
+            for (i = 0; i < to.length; i++) {
+                if (to[i].value == $('.selectedDate').val()) {
+                    x.push(to[i].id)
+                }
+            }
+            for (i = 0; i < x.length; i++) {
+                $(`#${x[i]}`).attr('hidden', false);
+                $(`#${x[i]}`).removeClass('hide');
+                $(`#${x[i]}`).css("display", "block");
+            }
+    }
+    $('#reserve').on('click', function () {
+        var date = $('.selectedDate').val();
+        var selectDate = new Date();
+        selectDate.getDate = date;
+        var targetId = $('.selectedDate').val();
+        var time = $(`#${targetId}sls`).children(":selected").attr("id");
+        var theMonth =$('#monthData').val();
+        var theYear = $('#yearData').val();
+        if (theYear == 0 && theMonth == 0) {
+            var newDate = new Date();
+            theYear = newDate.getFullYear();
+            theMonth = newDate.getMonth() + 1;
+        } else {
+            theYear = $('#yearData').val();
+            theMonth =$('#monthData').val();
+        }
+        $.ajax({
+            type: "POST",
+            cache: false,
+            url:'@Url.Action("Reserve","Reserve")',
+            method: 'Post',
+            data: {
+                date: date,
+                ProductId: '@Model.ProductId',
+                cusId: '@Model.Id',
+                month: theMonth,
+                year: theYear,
+                time:time,
+                __RequestVerificationToken: gettoken()
+            },
+            success: function () {
+            }
+        }).done(function (response) {
+            window.location.href = response.redirectToUrl;
+        }).fail(function (xhr) {
+            alert('系統錯誤');
+        });
+    })
+    function gettoken() {
+        var token = '@Html.AntiForgeryToken()';
+        token = $(token).val();
+        return token;
+    }
+</script>

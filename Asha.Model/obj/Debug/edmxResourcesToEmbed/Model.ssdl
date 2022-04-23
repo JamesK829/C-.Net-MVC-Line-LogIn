@@ -1,0 +1,160 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="AshaModel1.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="ASHA_CUSTOMER">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="varchar" MaxLength="32" Nullable="false" />
+    <Property Name="LINE_ID" Type="varchar" MaxLength="40" Nullable="false" />
+    <Property Name="MOBILE" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="NAME" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="BIRTHDAY" Type="datetime" Nullable="false" />
+    <Property Name="CREATOR" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="CREATE_TIME" Type="datetime" Nullable="false" />
+    <Property Name="MODIFIER" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="MODIFY_TIME" Type="datetime" Nullable="false" />
+    <Property Name="STATUS" Type="nvarchar" MaxLength="1" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ASHA_MANAGER">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="varchar" MaxLength="32" Nullable="false" />
+    <Property Name="CID" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="NAME" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="AUTH" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="ROLE" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="CREATOR" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="CREATE_TIME" Type="datetime" Nullable="false" />
+    <Property Name="MODIFIER" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="MODIFY_TIME" Type="datetime" Nullable="false" />
+    <Property Name="STATUS" Type="nvarchar" MaxLength="1" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ASHA_ORDER">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="varchar" MaxLength="32" Nullable="false" />
+    <Property Name="CUSTOMER_ID" Type="varchar" MaxLength="32" Nullable="false" />
+    <Property Name="PRODUCT_ID" Type="varchar" MaxLength="32" Nullable="false" />
+    <Property Name="DATE" Type="datetime" Nullable="false" />
+    <Property Name="TIME_ID" Type="nvarchar" MaxLength="1" Nullable="false" />
+    <Property Name="CREATOR" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="CREATE_TIME" Type="datetime" Nullable="false" />
+    <Property Name="MODIFIER" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="MODIFY_TIME" Type="datetime" Nullable="false" />
+    <Property Name="STATUS" Type="nvarchar" MaxLength="1" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ASHA_PRODUCT">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="varchar" MaxLength="32" Nullable="false" />
+    <Property Name="CATEGORY_ID" Type="varchar" MaxLength="32" Nullable="false" />
+    <Property Name="PRODUCT" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="CREATOR" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="CREATE_TIME" Type="datetime" Nullable="false" />
+    <Property Name="MODIFIER" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="MODIFY_TIME" Type="datetime" Nullable="false" />
+    <Property Name="STATUS" Type="nvarchar" MaxLength="1" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ASHA_PRODUCT_CATEGORY">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="varchar" MaxLength="32" Nullable="false" />
+    <Property Name="CATEGORY" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="CREATOR" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="CREATE_TIME" Type="datetime" Nullable="false" />
+    <Property Name="MODIFIER" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="MODIFY_TIME" Type="datetime" Nullable="false" />
+    <Property Name="STATUS" Type="nvarchar" MaxLength="1" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ASHA_SERVE_TIME">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="nvarchar" MaxLength="1" Nullable="false" />
+    <Property Name="TIME" Type="nvarchar" MaxLength="15" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_ASHA_ORDER_CUSTOMER">
+    <End Role="ASHA_CUSTOMER" Type="Self.ASHA_CUSTOMER" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="ASHA_ORDER" Type="Self.ASHA_ORDER" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ASHA_CUSTOMER">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ASHA_ORDER">
+        <PropertyRef Name="CUSTOMER_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ASHA_ORDER_PRODUCT">
+    <End Role="ASHA_PRODUCT" Type="Self.ASHA_PRODUCT" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="ASHA_ORDER" Type="Self.ASHA_ORDER" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ASHA_PRODUCT">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ASHA_ORDER">
+        <PropertyRef Name="PRODUCT_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ASHA_ORDER_TIME">
+    <End Role="ASHA_SERVE_TIME" Type="Self.ASHA_SERVE_TIME" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="ASHA_ORDER" Type="Self.ASHA_ORDER" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ASHA_SERVE_TIME">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ASHA_ORDER">
+        <PropertyRef Name="TIME_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ASHA_PRODUCT_CATEGORY">
+    <End Role="ASHA_PRODUCT_CATEGORY" Type="Self.ASHA_PRODUCT_CATEGORY" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="ASHA_PRODUCT" Type="Self.ASHA_PRODUCT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ASHA_PRODUCT_CATEGORY">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ASHA_PRODUCT">
+        <PropertyRef Name="CATEGORY_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="AshaModel1StoreContainer">
+    <EntitySet Name="ASHA_CUSTOMER" EntityType="Self.ASHA_CUSTOMER" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ASHA_MANAGER" EntityType="Self.ASHA_MANAGER" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ASHA_ORDER" EntityType="Self.ASHA_ORDER" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ASHA_PRODUCT" EntityType="Self.ASHA_PRODUCT" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ASHA_PRODUCT_CATEGORY" EntityType="Self.ASHA_PRODUCT_CATEGORY" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ASHA_SERVE_TIME" EntityType="Self.ASHA_SERVE_TIME" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_ASHA_ORDER_CUSTOMER" Association="Self.FK_ASHA_ORDER_CUSTOMER">
+      <End Role="ASHA_CUSTOMER" EntitySet="ASHA_CUSTOMER" />
+      <End Role="ASHA_ORDER" EntitySet="ASHA_ORDER" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ASHA_ORDER_PRODUCT" Association="Self.FK_ASHA_ORDER_PRODUCT">
+      <End Role="ASHA_PRODUCT" EntitySet="ASHA_PRODUCT" />
+      <End Role="ASHA_ORDER" EntitySet="ASHA_ORDER" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ASHA_ORDER_TIME" Association="Self.FK_ASHA_ORDER_TIME">
+      <End Role="ASHA_SERVE_TIME" EntitySet="ASHA_SERVE_TIME" />
+      <End Role="ASHA_ORDER" EntitySet="ASHA_ORDER" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ASHA_PRODUCT_CATEGORY" Association="Self.FK_ASHA_PRODUCT_CATEGORY">
+      <End Role="ASHA_PRODUCT_CATEGORY" EntitySet="ASHA_PRODUCT_CATEGORY" />
+      <End Role="ASHA_PRODUCT" EntitySet="ASHA_PRODUCT" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

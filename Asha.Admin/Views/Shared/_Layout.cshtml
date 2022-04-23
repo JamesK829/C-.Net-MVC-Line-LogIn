@@ -1,0 +1,96 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv=”x-ua-compatible” content="IE=EmulateIE11;chrome=1;">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link href="~/Content/css/global.css" rel="stylesheet" type="text/css" media="all" />
+    <link rel="stylesheet" href="~/Content/css/jquery-ui.min.css" type="text/css" />
+
+    <script type="text/javascript" src="~/Scripts/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery.placeholder.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery-ui-timepicker-addon.min.js"></script>
+    <style>
+        .field-validation-error {
+            color: red;
+        }
+
+        .redClass {
+            color: red;
+        }
+    </style>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(function () {
+                @if (TempData["Message"] != null)
+                {
+                    <text>
+                        var message = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(TempData["Message"]));
+                        alert(message);
+                        window.location.reload();
+                    </text>
+                    TempData["Message"] = null;
+                }
+            });
+        });
+    </script>
+    <script>
+        try {
+            $.ajaxPrefilter(function (options) {
+                options.beforeSend = function (xhr) {
+                    xhr.setRequestHeader("__RequestVerificationToken", $('[name=__RequestVerificationToken]').val());
+                }
+            });
+        } catch (err) { }
+    </script>
+    @RenderSection("SubHead", required: false)
+</head>
+<body>
+    <div class="wrapper">
+        @RenderPage("Header.cshtml")
+        <div class="main_wrapper">
+            @RenderPage("Menu.cshtml")
+            @RenderBody()
+        </div>
+
+        <div class="footer">Copyright @@ 2021 All Rights Reserved.</div>
+    </div>
+    @RenderSection("scripts", required: false)
+    <script type="text/javascript" src="~/Scripts/Common.js"></script>
+    <script>
+    var processGif = '@Url.Content("~/Content/images/process.gif")';
+    $(function () {
+        $('input, textarea').placeholder({ customClass: 'my-placeholder' });
+        $(window).bind('resize', function () {
+            var pageheight = $(window).height() - $('.footer').outerHeight() - $('.header').outerHeight();
+            if ($('.sidebar').height() < pageheight) {
+                  $('.main_wrapper').css("min-height", pageheight);
+            } else {
+                  $('.main_wrapper').css("min-height", $(".sidebar").height());
+            }
+            $('.sidebar').css("min-height", $('.main_wrapper').height());
+        }).resize();
+    });
+    $(document).ready(function () {
+        var target = $('#type :radio:checked').attr("value");
+        if (target == 1) {
+             $('#link').attr("hidden", false);
+        } else {
+             $('#link').attr("hidden", true);
+        }
+    });
+
+    $('#type').on('change', function () {
+        var target = $('#type :radio:checked').attr("value");
+        if (target == 1) {
+             $('#link').attr("hidden", false);
+        } else {
+             $('#link').attr("hidden", true);
+        }
+    });
+    </script>
+</body>
+</html>

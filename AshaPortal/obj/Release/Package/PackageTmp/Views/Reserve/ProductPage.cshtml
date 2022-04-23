@@ -1,0 +1,11 @@
+﻿@model AshaPortal.ReserveViewModel
+
+<select id="bodyOption" name="CategoryId" style="height: 45px;" class="form-control mobileSelect">
+    <option>請選擇</option>
+    @foreach (var item in Model.ProductList)
+    {
+        <option id="@item.ProductId" value="@item.ProductId">@item.ProductName</option>
+    }
+</select>
+
+

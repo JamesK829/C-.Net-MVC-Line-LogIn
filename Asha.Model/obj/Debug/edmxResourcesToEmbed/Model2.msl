@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="asha1ModelStoreContainer" CdmEntityContainer="asha1Entities">
+    <EntitySetMapping Name="ASHA_MANAGER">
+      <EntityTypeMapping TypeName="asha1Model.ASHA_MANAGER">
+        <MappingFragment StoreEntitySet="ASHA_MANAGER">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="CID" ColumnName="CID" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="AUTH" ColumnName="AUTH" />
+          <ScalarProperty Name="ROLE" ColumnName="ROLE" />
+          <ScalarProperty Name="CREATOR" ColumnName="CREATOR" />
+          <ScalarProperty Name="CREATE_TIME" ColumnName="CREATE_TIME" />
+          <ScalarProperty Name="MODIFIER" ColumnName="MODIFIER" />
+          <ScalarProperty Name="MODIFY_TIME" ColumnName="MODIFY_TIME" />
+          <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ASHA_PRODUCT">
+      <EntityTypeMapping TypeName="asha1Model.ASHA_PRODUCT">
+        <MappingFragment StoreEntitySet="ASHA_PRODUCT">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="CATEGORY_ID" ColumnName="CATEGORY_ID" />
+          <ScalarProperty Name="PRODUCT" ColumnName="PRODUCT" />
+          <ScalarProperty Name="CREATOR" ColumnName="CREATOR" />
+          <ScalarProperty Name="CREATE_TIME" ColumnName="CREATE_TIME" />
+          <ScalarProperty Name="MODIFIER" ColumnName="MODIFIER" />
+          <ScalarProperty Name="MODIFY_TIME" ColumnName="MODIFY_TIME" />
+          <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+          <ScalarProperty Name="seq" ColumnName="seq" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ASHA_PRODUCT_CATEGORY">
+      <EntityTypeMapping TypeName="asha1Model.ASHA_PRODUCT_CATEGORY">
+        <MappingFragment StoreEntitySet="ASHA_PRODUCT_CATEGORY">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="CATEGORY" ColumnName="CATEGORY" />
+          <ScalarProperty Name="CREATOR" ColumnName="CREATOR" />
+          <ScalarProperty Name="CREATE_TIME" ColumnName="CREATE_TIME" />
+          <ScalarProperty Name="MODIFIER" ColumnName="MODIFIER" />
+          <ScalarProperty Name="MODIFY_TIME" ColumnName="MODIFY_TIME" />
+          <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ASHA_ORDER">
+      <EntityTypeMapping TypeName="asha1Model.ASHA_ORDER">
+        <MappingFragment StoreEntitySet="ASHA_ORDER">
+          <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+          <ScalarProperty Name="MODIFY_TIME" ColumnName="MODIFY_TIME" />
+          <ScalarProperty Name="MODIFIER" ColumnName="MODIFIER" />
+          <ScalarProperty Name="CREATE_TIME" ColumnName="CREATE_TIME" />
+          <ScalarProperty Name="CREATOR" ColumnName="CREATOR" />
+          <ScalarProperty Name="TIME_ID" ColumnName="TIME_ID" />
+          <ScalarProperty Name="DATE" ColumnName="DATE" />
+          <ScalarProperty Name="PRODUCT_ID" ColumnName="PRODUCT_ID" />
+          <ScalarProperty Name="CUSTOMER_ID" ColumnName="CUSTOMER_ID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ASHA_SERVE_TIME">
+      <EntityTypeMapping TypeName="asha1Model.ASHA_SERVE_TIME">
+        <MappingFragment StoreEntitySet="ASHA_SERVE_TIME">
+          <ScalarProperty Name="TIME" ColumnName="TIME" />
+          <ScalarProperty Name="DATE" ColumnName="DATE" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ASHA_CUSTOMER">
+      <EntityTypeMapping TypeName="asha1Model.ASHA_CUSTOMER">
+        <MappingFragment StoreEntitySet="ASHA_CUSTOMER">
+          <ScalarProperty Name="AUTH" ColumnName="AUTH" />
+          <ScalarProperty Name="LINE_NAME" ColumnName="LINE_NAME" />
+          <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+          <ScalarProperty Name="MODIFY_TIME" ColumnName="MODIFY_TIME" />
+          <ScalarProperty Name="MODIFIER" ColumnName="MODIFIER" />
+          <ScalarProperty Name="CREATE_TIME" ColumnName="CREATE_TIME" />
+          <ScalarProperty Name="CREATOR" ColumnName="CREATOR" />
+          <ScalarProperty Name="BIRTHDAY" ColumnName="BIRTHDAY" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="MOBILE" ColumnName="MOBILE" />
+          <ScalarProperty Name="LINE_ID" ColumnName="LINE_ID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,572 @@
+@charset "UTF-8";
+/*font_Noto Sans TC*/
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans+TC:300,400,500,700,900&display=swap&subset=chinese-traditional');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;900&display=swap');
+/*font_Century Gothic*/
+@font-face {
+    font-family: 'Century Gothic';
+    font-style: normal;
+    font-weight: 400;
+    src: url(../css/font/Century_Gothic_400.otf);
+}
+
+@font-face {
+    font-family: 'Century Gothic';
+    font-style: normal;
+    font-weight: 700;
+    src: url(../css/font/Century_Gothic_700.otf);
+}
+html{
+    width:100vw;
+}
+.calendar {
+    width: 650px;
+    height: 400px;
+    opacity:0;
+    /*	box-shadow:0px 1px 1px rgba(0,0,0,0.1);
+*/
+}
+
+.body-list ul {
+    width: 100%;
+    font-family: arial;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+    .body-list ul li {
+        width: 14.28%;
+        height: 36px;
+        line-height: 36px;
+        list-style-type: none;
+        display: block;
+        box-sizing: border-box;
+        float: left;
+        text-align: center;
+    }
+
+.lightgrey {
+    color: #a8a8a8;
+}
+
+.darkgrey {
+    color: #565656;
+}
+
+.green {
+    color: #a5811e;
+}
+.gray {
+    color: #9d9d9d;
+}
+
+.greenbox {
+    border: 1px solid #8a7000;
+    background: #ffdb77;
+}
+
+.timeOptions {
+    width: 300px;
+    margin-top: 3%;
+}
+
+    .timeOptions select {
+        width: 300px;
+        margin-left: 30%;
+        color: #a5811e;
+        line-height: 50px;
+        padding-left: 20px;
+        border: none;
+        /*清除select聚焦时候的边框颜色*/
+        outline: none;
+        /*将select的宽高等于div的宽高*/
+        height: 40px;
+        line-height: 40px;
+        padding-left: 200px;
+    }
+
+    .timeOptions option {
+        color: #a5811e;
+        position: relative;
+    }
+
+    .timeOptions:after {
+        content: "";
+        width: 14px;
+        height: 8px;
+        /*通过定位将图标放在合适的位置*/
+        position: absolute;
+        right: 20px;
+        top: 41%;
+        /*给自定义的图标实现点击下来功能*/
+        pointer-events: none;
+    }
+
+.reserve {
+    width: 100%;
+    margin-top: 3%;
+}
+
+    .reserve select {
+        color: #a5811e;
+        border: none;
+        /*清除select聚焦时候的边框颜色*/
+        outline: none;
+        /*将select的宽高等于div的宽高*/
+        height: 40px;
+        line-height: 40px;
+        padding-left: 40%;
+    }
+
+    .reserve option {
+        color: #a5811e;
+        position: relative;
+    }
+
+    .reserve:after {
+        content: "";
+        width: 14px;
+        height: 8px;
+        /*通过定位将图标放在合适的位置*/
+        position: absolute;
+        right: 20px;
+        top: 41%;
+        /*给自定义的图标实现点击下来功能*/
+        pointer-events: none;
+    }
+
+.bodyOptions {
+    width: 100%;
+    margin-top: 3%;
+}
+
+    .bodyOptions select {
+        color: #a5811e;
+        border: none;
+        /*清除select聚焦时候的边框颜色*/
+        outline: none;
+        /*将select的宽高等于div的宽高*/
+        height: 40px;
+        line-height: 40px;
+        padding-left: 40%;
+    }
+
+    .bodyOptions option {
+        color: #a5811e;
+        position: relative;
+    }
+
+    .bodyOptions:after {
+        content: "";
+        width: 14px;
+        height: 8px;
+        /*通过定位将图标放在合适的位置*/
+        position: absolute;
+        right: 20px;
+        top: 41%;
+        /*给自定义的图标实现点击下来功能*/
+        pointer-events: none;
+    }
+
+.addOn {
+    width: 300px;
+    margin-top: 3%;
+}
+
+    .addOn select {
+        width: 300px;
+        margin-left: 30%;
+        color: #a5811e;
+        line-height: 50px;
+        padding-left: 20px;
+        border: none;
+        /*清除select聚焦时候的边框颜色*/
+        outline: none;
+        /*将select的宽高等于div的宽高*/
+        height: 40px;
+        line-height: 40px;
+        padding-left: 200px;
+    }
+
+    .addOn option {
+        color: #a5811e;
+        position: relative;
+    }
+
+    .addOn:after {
+        content: "";
+        width: 14px;
+        height: 8px;
+        /*通过定位将图标放在合适的位置*/
+        position: absolute;
+        right: 20px;
+        top: 41%;
+        /*给自定义的图标实现点击下来功能*/
+        pointer-events: none;
+    }
+
+.shapeOptions {
+    width: 300px;
+    margin-top: 3%;
+}
+
+    .shapeOptions select {
+        width: 300px;
+        margin-left: 30%;
+        color: #a5811e;
+        line-height: 50px;
+        padding-left: 20px;
+        border: none;
+        /*清除select聚焦时候的边框颜色*/
+        outline: none;
+        /*将select的宽高等于div的宽高*/
+        height: 40px;
+        line-height: 40px;
+        padding-left: 200px;
+    }
+
+    .shapeOptions option {
+        color: #a5811e;
+        position: relative;
+    }
+
+    .shapeOptions:after {
+        content: "";
+        width: 14px;
+        height: 8px;
+        /*通过定位将图标放在合适的位置*/
+        position: absolute;
+        right: 20px;
+        top: 41%;
+        /*给自定义的图标实现点击下来功能*/
+        pointer-events: none;
+    }
+
+.timeOptions {
+    width: 300px;
+    margin-top: 3%;
+}
+
+    .timeOptions select {
+        width: 300px;
+        margin-left: 30%;
+        color: #a5811e;
+        line-height: 50px;
+        padding-left: 20px;
+        border: none;
+        /*清除select聚焦时候的边框颜色*/
+        outline: none;
+        /*将select的宽高等于div的宽高*/
+        height: 40px;
+        line-height: 40px;
+        padding-left: 200px;
+    }
+
+    .timeOptions option {
+        color: #a5811e;
+        position: relative;
+    }
+
+    .timeOptions:after {
+        content: "";
+        width: 14px;
+        height: 8px;
+        /*通过定位将图标放在合适的位置*/
+        position: absolute;
+        right: 20px;
+        top: 41%;
+        /*给自定义的图标实现点击下来功能*/
+        pointer-events: none;
+    }
+
+.submit {
+    width: 300px;
+    height: 30px;
+    color: #a5811e;
+    position: relative;
+    margin-left: 15%;
+    margin-top: 30px;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
+.title {
+    color: #a5811e;
+    position: relative;
+    font-family: "Times New Roman", Times, serif;
+}
+
+.contentNav_sub {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    margin-right: 10px;
+    margin-top: 50%;
+    position: absolute;
+}
+
+    .contentNav_sub a {
+        flex: 0 0 auto;
+        min-width: 150px;
+        margin: 0 15px 0 0;
+        padding: 0 10px;
+        font-size: 18px;
+    }
+
+.btn .btn_submit {
+    color: #fff;
+    background: #f08300; /* Old browsers */
+    background: -moz-linear-gradient(left, #f08300 0%, #f6aa00 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(left, #f08300 0%,#f6aa00 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to right, #f08300 0%,#f6aa00 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+}
+
+.btn_round {
+    background-color: #f6aa00; /* Green */
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: block;
+    font-size: 16px;
+    border-radius: 3%;
+    width: 70px;
+    height: 30px;
+}
+
+.tab_sty1 {
+    border-top: 1px solid #f6aa00;
+    padding-top: 200px;
+    margin-left: 40px;
+    font-size: 12px;
+    text-align: center;
+}
+
+    .tab_sty1 th {
+        padding: 5px;
+        border-bottom: 1px solid #a05b43;
+        border-left: 1px solid #ddd;
+        color: #a05b43;
+        background-color: rgb(0,0,0,0);
+    }
+    .tab_sty1 tr td {
+        padding: 5px;
+        border-bottom: 1px solid #a05b43;
+        border-left: 1px solid #ddd;
+        background-color: rgb(0,0,0,0);
+    }
+
+    .tab_sty1 th a {
+        color: #a05b43;
+    }
+
+        .tab_sty1 th:first-child {
+            border-left: none;
+        }
+
+    .tab_sty1 tr.bg th {
+        background-color: #a05b43;
+    }
+
+/*    .tab_sty1 td {
+        padding: 10px 5px;
+        border-left: 1px solid #ddd;
+        border-bottom: 1px solid #ccc;
+        background-color: #f6f6f6;
+    }*/
+
+        .tab_sty1 td:first-child {
+            border-left: none;
+        }
+
+    .tab_sty1 tr:nth-child(odd) td {
+        background-color: #fff;
+    }
+
+    .tab_sty1 tr td.td_event {
+        background-color: #cddff2;
+    }
+
+/*.layoutSec {
+    background-color: #fdecd0;
+    background-image: url(../images/bck.png);
+    background-repeat: no-repeat;
+    background-position: top;
+    height: 1000px;
+    width: 100vw;
+    margin-top:-120px;
+}*/
+
+body {
+    margin: 0;
+    font-family: var(--bs-body-font-family);
+    font-size: var(--bs-body-font-size);
+    font-weight: var(--bs-body-font-weight);
+    line-height: var(--bs-body-line-height);
+    color: var(--bs-body-color);
+    text-align: var(--bs-body-text-align);
+    background-color: var(--bs-body-bg);
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+section {
+    display: block;
+    margin-top: -20%;
+}
+
+
+.slide-up-fade-in {
+    animation: slide-up-fade-in ease 1s;
+    animation-iteration-count: 1;
+    transform-origin: 50% 50%;
+    animation-fill-mode: forwards; /*when the spec is finished*/
+    -webkit-animation: slide-up-fade-in ease 1s;
+    -webkit-animation-iteration-count: 1;
+    -webkit-transform-origin: 50% 50%;
+    -webkit-animation-fill-mode: forwards; /*Chrome 16+, Safari 4+*/
+    -moz-animation: slide-up-fade-in ease 1s;
+    -moz-animation-iteration-count: 1;
+    -moz-transform-origin: 50% 50%;
+    -moz-animation-fill-mode: forwards; /*FF 5+*/
+    -o-animation: slide-up-fade-in ease 1s;
+    -o-animation-iteration-count: 1;
+    -o-transform-origin: 50% 50%;
+    -o-animation-fill-mode: forwards; /*Not implemented yet*/
+    -ms-animation: slide-up-fade-in ease 1s;
+    -ms-animation-iteration-count: 1;
+    -ms-transform-origin: 50% 50%;
+    -ms-animation-fill-mode: forwards; /*IE 10+*/
+
+    opacity: 0;
+    opacity: 1\9;
+}
+
+
+
+
+@keyframes slide-up-fade-in {
+    0% {
+        opacity: 0;
+        transform: translate(0px,40px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translate(0px,0px);
+    }
+}
+
+@-moz-keyframes slide-up-fade-in {
+    0% {
+        opacity: 0;
+        -moz-transform: translate(0px,40px);
+    }
+
+    100% {
+        opacity: 1;
+        -moz-transform: translate(0px,0px);
+    }
+}
+
+@-webkit-keyframes slide-up-fade-in {
+    0% {
+        opacity: 0;
+        -webkit-transform: translate(0px,40px);
+    }
+
+    100% {
+        opacity: 1;
+        -webkit-transform: translate(0px,0px);
+    }
+}
+
+@-o-keyframes slide-up-fade-in {
+    0% {
+        opacity: 0;
+        -o-transform: translate(0px,40px);
+    }
+
+    100% {
+        opacity: 1;
+        -o-transform: translate(0px,0px);
+    }
+}
+
+@-ms-keyframes slide-up-fade-in {
+    0% {
+        opacity: 0;
+        -ms-transform: translate(0px,40px);
+    }
+
+    100% {
+        opacity: 1;
+        -ms-transform: translate(0px,0px);
+    }
+}
+
+
+.clearfix {
+    clear: both;
+    zoom: 1;
+}
+.mobileSelect {
+    width: 80vw;
+    margin-top: 20%;
+    font-size: 16px;
+    color: #f1e5da;
+    border: 1px solid #95754c;
+    background: #a05b43;
+    margin-left: 10%;
+}
+    .mobileSelect option :not(:checked) {
+        width: 600px;
+        background: #ece4d9;
+        color: #95754c;
+    }
+.signUpInput {
+    font-size: 20px;
+    height: 20px;
+    width: 270px;
+    background: rgba(0, 0, 0, 0);
+    border: none;
+    outline: none;
+    border-bottom: 0px solid rgba(173, 138, 118, 0.5);
+    padding-top: 5vh;
+}
+.signUpInputBd {
+    font-size: 14px;
+    height: 20px;
+    width: 150px;
+    background: rgba(0, 0, 0, 0);
+    outline: none;
+}
+input, textarea {
+    font-size: initial;
+}
+.signUpTable {
+    min-width: 300px;
+    max-width: 800px;
+    width: 80vw;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 80px;
+    background-color: #fff4dd;
+    text-align:center;
+}
+.edit {
+
+    border: 1px gray;
+    padding: 5px 3px;
+    color: #ac6119;
+}

@@ -1,0 +1,39 @@
+﻿@using AshaAdmin
+@model AshaAdmin.CategoryForm
+<div class="main">
+    <div class="breadcrumb">首頁>產品類別編輯</div>
+    <div class="pageHeader">
+        <h2>產品類別編輯</h2>
+    </div>
+    <div class="content">
+        <div class="mainBlock">
+            @using (Html.BeginForm("Edit", "Category", FormMethod.Post, new { @id = "sForm", autocomplete = "off", enctype = "multipart/form-data" }))
+            {
+                @Html.AntiForgeryToken()
+                @Html.HiddenFor(model => model.Create_Time)
+                <table width="100%" border="0" cellspacing="0" cellpadding="0" class="tab_sty2">
+                    <tr>
+                        <th width="20%" scope="col" class="requiredTit">名稱</th>
+                        <td class="ROLE_NAME">
+                            @Html.TextBoxFor(model => model.Category)
+                            @Html.ValidationMessageFor(model => model.Category, "", new { style = "color:red" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="col" class="requiredTit">狀態</th>
+                        <td class="statusmes">
+                            @foreach (var data in @SysConstants.StatusOption)
+                            {
+                                <label>@Html.RadioButton("Status", data.Key) @data.Value</label>
+                            }
+                        </td>
+                    </tr>
+                </table>
+                <div class="btnArea">
+                        <a href="@Url.Action("Index")" class="bt sty2 hvr-shadow">清除</a>
+                        <a href="#" class="bt sty1 hvr-shadow" onclick="$('#sForm').submit();return false;">儲存</a>
+                </div>
+            }
+        </div>
+    </div>
+</div>

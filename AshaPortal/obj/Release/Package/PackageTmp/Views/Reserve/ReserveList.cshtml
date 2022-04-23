@@ -1,0 +1,11 @@
+﻿@model AshaPortal.ReserveList
+
+    <div class="row" style="background-image: url('../../Content/images/Reservation_BG5.jpg'); background-repeat: no-repeat; background-size: cover; width: 100vw; height: 800px; z-index: -1; margin-top:-6%;">
+        <div class="col-sm-12">
+            <h3>您已預定</h3> <h2>@Model.RecentlyReserve.ReserveCategory-@Model.RecentlyReserve.ReserveProd</h2> <h3>於: </h3><h2>@Model.RecentlyReserve.ReserveDate</h2>
+            <h2>, 時段: @Model.RecentlyReserve.ReserveTime</h2>
+        </div>
+        <div class="col-sm-12">
+
+        </div>
+    </div>
