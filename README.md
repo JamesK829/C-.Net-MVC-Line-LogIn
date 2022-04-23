@@ -4,6 +4,7 @@
 
 
 #sql script
+#
 CREATE TABLE [MANAGER](
 [ID] VARCHAR(32) NOT NULL,
 [CID] NVARCHAR(20) NOT NULL,
@@ -92,24 +93,6 @@ CONSTRAINT [FK_ORDER_PRODUCT] FOREIGN KEY ([PRODUCT_ID]) REFERENCES [PRODUCT] ([
 )
 
   alter table [PRODUCT] add seq int null;
-
-  insert into [PRODUCT_CATEGORY] values
-   ('001','Body X Mind','Admin','2021-11-04','Admin','2021-11-04',1)
-  ,('002','�������u�޲z','Admin','2021-11-04','Admin','2021-11-04',1)
-
-    insert into [PRODUCT] values
-	('011','001','�ͩR�ڰ򥭿�','Admin','2021-11-04','Admin','2021-11-04',1,1)
-,('012','001','�ͩR�M��','Admin','2021-11-04','Admin','2021-11-04',1,2)
-,('013','001','�F��۵M���k','Admin','2021-11-04','Admin','2021-11-04',1,3)
-,('014','001','�������Žղz','Admin','2021-11-04','Admin','2021-11-04',1,4)
-,('015','001','����b�Ư�q���k','Admin','2021-11-04','Admin','2021-11-04',1,5)
-,('016','001','�Y���V���b��','Admin','2021-11-04','Admin','2021-11-04',1,6)
-
-,('021','002','�b�ƺ�����J','Admin','2021-11-04','Admin','2021-11-04',1,1)
-,('022','002','������ݬ��ƫO���ҵ{','Admin','2021-11-04','Admin','2021-11-04',1,2)
-,('023','002','��o����-�߽����ūO���ҵ{','Admin','2021-11-04','Admin','2021-11-04',1,3)
-,('024','002','���Ĳb�ƽղz','Admin','2021-11-04','Admin','2021-11-04',1,4)
-,('025','002','�V�I���c�ղz','Admin','2021-11-04','Admin','2021-11-04',1,5)
 
 alter table CUSTOMER add LINE_NAME NVARCHAR(30) NULL;
 alter table CUSTOMER alter column LINE_ID NVARCHAR(50) NULL;
